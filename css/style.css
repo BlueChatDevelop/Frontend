@@ -3,7 +3,8 @@ body{
 	background-color: #1D397C;
 	align-items: center;
 	justify-content: space-between;
-    border: 1px solid #000;
+	flex-direction: column;
+	text-align: center;
 }
 .buttons{
 	justify-content: center; 
@@ -17,14 +18,6 @@ body{
 	background-color: #BAFFB7;
 	justify-content: center; 
 	flex-direction: column;
-	text-align: center
-}
-.right_column{
-	width: 49.9%;
-	height: 500px;
-	background-color: #BAFFB7;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	text-align: center
+	text-align: center;
+	border: 1px solid #000;
 }
