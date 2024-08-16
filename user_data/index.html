@@ -3,25 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlueChat - Sign Up</title>
+    <title>BlueChat - User Data</title>
     <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="header">
-        <button class="top-button" onclick="window.location.href='../main_page/index.html'">Home</button>
-        <button class="top-button" onclick="window.location.href='../login/index.html'">Login</button>
+        <button class="top-button" onclick="window.location.href='../login/index.html'">Logout</button>
     </div>
     <div class="wrapper">
-        <div class="signup-form">
-            <h1>Sign Up for BlueChat</h1>
-            <form action="#" method="post">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="text" name="surname" placeholder="Surname" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit" class="submit-button">Create Account</button>
-            </form>
+        <div class="user-data">
+            <h1>Your Profile</h1>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <td id="nameField"></td>
+                </tr>
+                <tr>
+                    <th>Surname</th>
+                    <td id="surnameField"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td id="emailField"></td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>
+                        <input type="password" id="passwordField" readonly>
+                        <span class="eye-icon" onclick="togglePasswordVisibility()">👁</span>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </body>
 </html>
+
