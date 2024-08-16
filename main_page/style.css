@@ -1,18 +1,3 @@
-.buttons{
-	justify-content: center; 
-	flex-direction: column;
-	text-align: center
-}
-.left_column{
-	width:49.9%;
-	height: 500px;
-	display: flex;
-	background-color: #BAFFB7;
-	justify-content: center; 
-	flex-direction: column;
-	text-align: center;
-	border: 1px solid #000;
-}
 /* Resetting default margins and paddings */
 * {
     margin: 0;
@@ -85,50 +70,4 @@ p {
     margin-bottom: 40px;
     color: #555555;
     line-height: 1.6em;
-}
-.signup-form {
-    text-align: center;
-    background-color: #ffffff;
-    padding: 40px 80px;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    max-width: 480px;
-    width: 100%;
-}
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 20px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    font-size: 1.1em;
-    color: #333333;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-.submit-button {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
