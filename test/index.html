@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form</title>
+</head>
+<body>
+    <form id="emailForm">
+        <input type="email" id="email" placeholder="Enter your email">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('emailForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const resultElement = document.getElementById('result');
+
+            try {
+                const url = new URL('http://localhost:3000/api/authorization/check');
+                url.searchParams.append('email', email);
+
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const result = await response.json();
+                resultElement.textContent = `Email valid: ${result.valid}`;
+            } catch (error) {
+                console.error('Error:', error);
+                resultElement.textContent = 'An error occurred while checking the email.';
+            }
+        });
+    </script>
+</body>
+</html>
