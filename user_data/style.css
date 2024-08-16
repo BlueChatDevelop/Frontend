@@ -109,3 +109,20 @@ input[type="password"] {
 input[type="password"]:focus {
     border-bottom: 1px solid #007bff;
 }
+
+.delete-button {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}

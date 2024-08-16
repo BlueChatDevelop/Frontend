@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="header">
-        <button class="top-button" onclick="window.location.href='../login/index.html'">Logout</button>
+        <button class="top-button" onclick="handleLogout()">Logout</button>
     </div>
     <div class="wrapper">
         <div class="user-data">
@@ -31,12 +31,14 @@
                     <th>Password</th>
                     <td>
                         <input type="password" id="passwordField" readonly>
-                        <span class="eye-icon" onclick="togglePasswordVisibility()">👁</span>
+                        <span class="eye-icon" onclick="togglePasswordVisibility()">👁️</span>
                     </td>
                 </tr>
             </table>
+            <button class="delete-button" onclick="handleDeleteAccount()">Delete Account</button>
         </div>
     </div>
 </body>
 </html>
+
 

@@ -4,17 +4,30 @@ function togglePasswordVisibility() {
     passwordField.setAttribute('type', type);
 }
 
+function handleLogout() {
+    localStorage.removeItem('currentUser'); // Clear the current user
+    window.location.href = '../login/index.html'; // Redirect to login page
+}
+
+function handleDeleteAccount() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+        localStorage.removeItem(currentUser); // Remove user data from localStorage
+        localStorage.removeItem('currentUser'); // Clear the current user
+        alert('Your account has been deleted.');
+        window.location.href = '../login/index.html'; // Redirect to login page
+    }
+}
+
 // Populate the user data page with stored information
 document.addEventListener('DOMContentLoaded', function () {
-    const storedUserData = JSON.parse(localStorage.getItem('user'));
+    const currentUser = localStorage.getItem('currentUser');
 
+    const storedUserData = JSON.parse(localStorage.getItem(currentUser));
     if (storedUserData) {
         document.getElementById('nameField').textContent = storedUserData.name;
         document.getElementById('surnameField').textContent = storedUserData.surname;
         document.getElementById('emailField').textContent = storedUserData.email;
         document.getElementById('passwordField').value = storedUserData.password;
-    } else {
-        alert('No user data found. Please sign up or log in.');
-        window.location.href = 'signup.html';
     }
 });
