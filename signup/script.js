@@ -1,4 +1,4 @@
-function handleSignup(event) {
+async function handleSignup(event) {
     event.preventDefault(); // Prevent form submission
 
     // Get user data from the form
@@ -7,17 +7,32 @@ function handleSignup(event) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Check if the email already exists
-    if (localStorage.getItem(email)) {
-        alert('An account with this email already exists.');
-        return;
+    try {
+        // Send signup request to the API
+        const response = await fetch('http://localhost:8000/api/authorization/reg', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Name: name,
+                Surname: surname,
+                Email: email,
+                Password: password
+            })
+        });
+
+        const result = await response.json();
+
+        // Check if the signup was successful
+        if (response.ok && result) {
+            // Redirect to the user data page if signup is successful
+            window.location.href = '/user_data/';
+        } else {
+            alert('An account with this email already exists or registration failed. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred during signup. Please try again later.');
     }
-
-    // Store user data in localStorage
-    const userData = { name, surname, email, password };
-    localStorage.setItem(email, JSON.stringify(userData));
-
-    // Redirect to the user data page
-    window.location.href = '/user_data/';
 }
-

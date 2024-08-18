@@ -1,40 +1,34 @@
-function handleSignup(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Get user data from the form
-    const name = document.getElementById('name').value;
-    const surname = document.getElementById('surname').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    // Store user data in localStorage
-    const userData = { name, surname, email, password };
-    localStorage.setItem(email, JSON.stringify(userData));
-
-    // Redirect to the user data page
-    window.location.href = '/user_data/';
-}
-
-function handleLogin(event) {
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent form submission
 
     // Get login data from the form
     const email = document.getElementById('loginIdentifier').value;
     const loginPassword = document.getElementById('loginPassword').value;
 
-    // Retrieve stored user data from localStorage using the email as the key
-    const storedUserData = JSON.parse(localStorage.getItem(email));
+    try {
+        // Send login request to the API running on port 8000
+        const response = await fetch('http://localhost:8000/api/authorization/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Email: email,
+                Password: loginPassword
+            })
+        });
 
-    // Check if the credentials match
-    if (
-        storedUserData &&
-        storedUserData.password === loginPassword
-    ) {
-        // Redirect to the user data page if credentials are correct
-        localStorage.setItem('currentUser', email); // Store current user
-        window.location.href = '/user_data/';
-    } else {
-        alert('Incorrect email or password. Please try again.');
+        const result = await response.json();
+
+        // Check if the login was successful
+        if (response.ok && result) {
+            // Redirect to the user data page if credentials are correct
+            window.location.href = '/user_data/';
+        } else {
+            alert('Incorrect email or password. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred during login. Please try again later.');
     }
-}
-
+});
