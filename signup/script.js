@@ -18,6 +18,6 @@ function handleSignup(event) {
     localStorage.setItem(email, JSON.stringify(userData));
 
     // Redirect to the user data page
-    window.location.href = '../user_data/index.html';
+    window.location.href = '/user_data/';
 }
 

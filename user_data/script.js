@@ -6,7 +6,7 @@ function togglePasswordVisibility() {
 
 function handleLogout() {
     localStorage.removeItem('currentUser'); // Clear the current user
-    window.location.href = '../login/index.html'; // Redirect to login page
+    window.location.href = '/login/'; // Redirect to login page
 }
 
 function handleDeleteAccount() {
@@ -15,7 +15,7 @@ function handleDeleteAccount() {
         localStorage.removeItem(currentUser); // Remove user data from localStorage
         localStorage.removeItem('currentUser'); // Clear the current user
         alert('Your account has been deleted.');
-        window.location.href = '../login/index.html'; // Redirect to login page
+        window.location.href = '/login/'; // Redirect to login page
     }
 }
 

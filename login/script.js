@@ -12,7 +12,7 @@ function handleSignup(event) {
     localStorage.setItem(email, JSON.stringify(userData));
 
     // Redirect to the user data page
-    window.location.href = '../user_data/index.html';
+    window.location.href = '/user_data/';
 }
 
 function handleLogin(event) {
@@ -32,7 +32,7 @@ function handleLogin(event) {
     ) {
         // Redirect to the user data page if credentials are correct
         localStorage.setItem('currentUser', email); // Store current user
-        window.location.href = '../user_data/index.html';
+        window.location.href = '/user_data/';
     } else {
         alert('Incorrect email or password. Please try again.');
     }
