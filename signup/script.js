@@ -11,6 +11,7 @@ async function handleSignup(event) {
         // Send signup request to the API
         const response = await fetch('http://localhost:8000/api/authorization/reg', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },

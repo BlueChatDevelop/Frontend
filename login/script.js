@@ -9,6 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         // Send login request to the API running on port 8000
         const response = await fetch('http://localhost:8000/api/authorization/login', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             },

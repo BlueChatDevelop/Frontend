@@ -1,6 +1,9 @@
 async function checkAuthorization() {
     try {
-        const response = await fetch('http://localhost:8000/api/authorization/isAuthenticated');
+        const response = await fetch('http://localhost:8000/api/authorization/isAuthenticated', {
+            method: 'GET',
+            credentials: 'include'
+        });
         const isAuthenticated = await response.json();
 
         if (isAuthenticated) {

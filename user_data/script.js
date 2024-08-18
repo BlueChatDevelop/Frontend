@@ -7,7 +7,8 @@ function togglePasswordVisibility() {
 async function handleLogout() {
     try {
         await fetch('http://localhost:8000/api/authorization/logout', {
-            method: 'POST'
+            method: 'POST',
+            credentials: 'include'
         });
         window.location.href = '/login/';
     } catch (error) {
@@ -18,7 +19,8 @@ async function handleLogout() {
 async function handleDeleteAccount() {
     try {
         const response = await fetch('http://localhost:8000/api/authorization/delete', {
-            method: 'DELETE'
+            method: 'DELETE',
+            credentials: 'include'
         });
 
         if (response.ok) {
@@ -34,7 +36,10 @@ async function handleDeleteAccount() {
 
 async function loadUserData() {
     try {
-        const response = await fetch('http://localhost:8000/api/authorization/getuserinfo');
+        const response = await fetch('http://localhost:8000/api/authorization/getuserinfo',{
+            method: 'GET',
+            credentials: 'include'
+        });
         if (response.ok) {
             const userData = await response.json();
             document.getElementById('nameField').textContent = userData.name;
