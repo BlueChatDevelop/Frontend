@@ -4,30 +4,52 @@ function togglePasswordVisibility() {
     passwordField.setAttribute('type', type);
 }
 
-function handleLogout() {
-    localStorage.removeItem('currentUser'); // Clear the current user
-    window.location.href = '/login/'; // Redirect to login page
-}
-
-function handleDeleteAccount() {
-    const currentUser = localStorage.getItem('currentUser');
-    if (currentUser) {
-        localStorage.removeItem(currentUser); // Remove user data from localStorage
-        localStorage.removeItem('currentUser'); // Clear the current user
-        alert('Your account has been deleted.');
-        window.location.href = '/login/'; // Redirect to login page
+async function handleLogout() {
+    try {
+        await fetch('http://localhost:8000/api/authorization/logout', {
+            method: 'POST'
+        });
+        window.location.href = '/login/';
+    } catch (error) {
+        console.error('Error during logout:', error);
     }
 }
 
-// Populate the user data page with stored information
-document.addEventListener('DOMContentLoaded', function () {
-    const currentUser = localStorage.getItem('currentUser');
+async function handleDeleteAccount() {
+    try {
+        const response = await fetch('http://localhost:8000/api/authorization/delete', {
+            method: 'DELETE'
+        });
 
-    const storedUserData = JSON.parse(localStorage.getItem(currentUser));
-    if (storedUserData) {
-        document.getElementById('nameField').textContent = storedUserData.name;
-        document.getElementById('surnameField').textContent = storedUserData.surname;
-        document.getElementById('emailField').textContent = storedUserData.email;
-        document.getElementById('passwordField').value = storedUserData.password;
+        if (response.ok) {
+            alert('Your account has been deleted.');
+            window.location.href = '/login/';
+        } else {
+            alert('Error deleting account. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error deleting account:', error);
     }
-});
+}
+
+async function loadUserData() {
+    try {
+        const response = await fetch('http://localhost:8000/api/authorization/getuserinfo');
+        if (response.ok) {
+            const userData = await response.json();
+            document.getElementById('nameField').textContent = userData.name;
+            document.getElementById('surnameField').textContent = userData.surname;
+            document.getElementById('emailField').textContent = userData.email;
+            document.getElementById('passwordField').value = userData.password;
+        } else {
+            alert('Failed to load user data. Redirecting to login.');
+            window.location.href = '/login/';
+        }
+    } catch (error) {
+        console.error('Error loading user data:', error);
+        alert('An error occurred. Redirecting to login.');
+        window.location.href = '/login/';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadUserData);
